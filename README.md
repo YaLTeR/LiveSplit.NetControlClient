@@ -1,0 +1,1 @@
+This is a LiveSplit component that can connect to the SourceRuns server and send timer events. You can change the server address in `Connection.cs`. Intended to be used with [network-relay](https://github.com/YaLTeR/network-relay).
