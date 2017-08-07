@@ -138,6 +138,11 @@ namespace LiveSplit.NetControlClient
             Send("reset");
         }
 
+        public void SendCurrentTime(TimeSpan time)
+        {
+            Send("currenttime " + (long)time.TotalMilliseconds);
+        }
+
         public void Dispose()
         {
             Stream?.Close();

@@ -16,6 +16,9 @@ namespace LiveSplit.NetControlClient
         private LiveSplitState State;
         private Connection Connection = new Connection();
 
+        private Stopwatch Stopwatch = Stopwatch.StartNew();
+        private long TenthsOfSecondsPassed = 0;
+
         public Component(LiveSplitState state)
         {
             State = state;
@@ -44,6 +47,14 @@ namespace LiveSplit.NetControlClient
 
         public override void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
+            var passed = Stopwatch.Elapsed.Seconds / 10;
+            if (TenthsOfSecondsPassed != passed)
+            {
+                TenthsOfSecondsPassed = passed;
+
+                var time = state.CurrentTime.RealTime ?? TimeSpan.Zero;
+                Connection.SendCurrentTime(time);
+            }
         }
 
         private void Connect()
