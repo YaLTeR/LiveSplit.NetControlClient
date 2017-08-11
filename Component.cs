@@ -82,7 +82,7 @@ namespace LiveSplit.NetControlClient
 
         private void State_OnStart(object sender, EventArgs e)
         {
-            Connection.SendStart();
+            Connection.SendStart(State.Run.Offset);
         }
 
         private void State_OnSplit(object sender, EventArgs e)

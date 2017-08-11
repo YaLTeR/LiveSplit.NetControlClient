@@ -103,8 +103,9 @@ namespace LiveSplit.NetControlClient
             }
         }
 
-        public void SendStart()
+        public void SendStart(TimeSpan offset)
         {
+            Send("runoffset " + (long)offset.TotalMilliseconds);
             Send("starttimer");
         }
 
